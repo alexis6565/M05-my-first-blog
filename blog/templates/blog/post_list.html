@@ -10,18 +10,14 @@
     <!-- both article elements contain blog posts w/
     published date in a time element, a h2 element with a post 
     title that is clickable and a p (paragraph) element for text of our blog post. -->  
-    <article>
-            <time>published: 14.06.2014, 12:14</time>
-            <h2><a href="">My first post</a></h2>
-            <p>Aenean eu leo quam. Pellentesque ornare sem lacinia quam venenatis vestibulum. Donec id elit non mi porta gravida at eget metus. Fusce dapibus, tellus ac cursus commodo, tortor mauris condimentum nibh, ut fermentum massa justo sit amet risus.</p>
-        </article>
-
+    <!--posts will display like the static posts created in intro to HTML!-->
+    {% for post in posts %}
         <article>
-            <time>published: 14.06.2014, 12:14</time>
-            <h2><a href="">My second post</a></h2>
-            <p>Aenean eu leo quam. Pellentesque ornare sem lacinia quam venenatis vestibulum. Donec id elit non mi porta gravida at eget metus. Fusce dapibus, tellus ac cursus commodo, tortor mauris condimentum nibh, ut f.</p>
-        <!-- <p> is a tag for paragraph elements and closes each paragraph-->
-        </article>   
+            <time>published: {{ post.published_date }}</time>
+            <h2><a href="">{{ post.title }}</a></h2> <!-- accessing data in each of the fields defined in our post model -->
+            <p>{{ post.text|linebreaksbr }}</p> <!-- linebreaksbr is a filter that converts line breaks in the text to HTML line breaks -->
+        </article>
+    {% endfor %} 
     </body>
 </html> <!-- always at the end of the content! -->
 
