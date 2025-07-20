@@ -1,25 +1,18 @@
-<!DOCTYPE html> <!-- this is not an HTML tag and it only declares the doc type and informs the browser that the doc type is HTML 5 -->
-<html>
-    <head> <!--each HTML is divided into head(contains info about the doc not displayed on the screen) and body(element that contains everything else displayed as part of the web page) -->
-        <title>Django Girls Blog</title> <!-- will be in the titl bar pf the browser! -->
-    </head> <!--the most basic tag and its always the end of html content -->
-    <body>
-         <header> <!-- header contains the blog title, a heading and a link-->
-            <h1><a href="/">Django Girls Blog</a></h1>
-        </header> 
-    <!-- both article elements contain blog posts w/
-    published date in a time element, a h2 element with a post 
-    title that is clickable and a p (paragraph) element for text of our blog post. -->  
-    <!--posts will display like the static posts created in intro to HTML!-->
+
+{% extends 'blog/base.html' %} <!--connect these two templates together. This is what extending templates is all about! We'll do this by adding an extends tag to the beginning of the file. -->
+
+{% block content %} 
     {% for post in posts %}
-        <article>
-            <time>published: {{ post.published_date }}</time>
-            <h2><a href="">{{ post.title }}</a></h2> <!-- accessing data in each of the fields defined in our post model -->
-            <p>{{ post.text|linebreaksbr }}</p> <!-- linebreaksbr is a filter that converts line breaks in the text to HTML line breaks -->
+        <article class="post">
+            <time class="date">
+                {{ post.published_date }}
+            </time>
+            <h2><a href="{% url 'post_detail' pk=post.pk %}">{{ post.title }}</a></h2>
+            <p>{{ post.text|linebreaksbr }}</p>
         </article>
-    {% endfor %} 
-    </body>
-</html> <!-- always at the end of the content! -->
+    {% endfor %}
+{% endblock %}
+        
 
 <!-- 
 CUSTOMIZE YOUR TEMPLATE!!

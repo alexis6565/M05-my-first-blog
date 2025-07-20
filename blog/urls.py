@@ -11,6 +11,11 @@ from . import views
 
 #first url pattern
 urlpatterns = [
-    path('', views.post_list, name='post_list')
+    path('', views.post_list, name='post_list'),
+    path('post/<int:pk>/', views.post_detail, name='post_detail'),
 ]
 
+#post/<int:pk>/ specifies a URL pattern – we will explain it for you:
+#post/ means that the URL should begin with the word post followed by a /. So far so good.
+#<int:pk> – this part is trickier. It means that Django expects an integer value and will transfer it to a view as a variable called pk.
+#/ – then we need a / again before finishing the URL.
